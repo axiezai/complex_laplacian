@@ -11,3 +11,5 @@ This repository is dependent on [`spectrome`](https://github.com/Raj-Lab-UCSF/sp
 
 ## Files:
 
+## Contributing:
+We'd love to have some feedback! Please take a look at our [Contributing guidelines](CONTRIBUTING.md) before creating a pull request. Also feel free to contact any of the repo maintainers as listed above. 
