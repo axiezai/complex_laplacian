@@ -44,3 +44,4 @@ venv.bak/
 
 # repo specific:
 data/*.h5
+figures/
