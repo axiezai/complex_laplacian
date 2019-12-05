@@ -1,0 +1,165 @@
+\documentclass{article}
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{lineno}
+\usepackage{adjustbox}
+\usepackage{natbib}
+\usepackage{bm}
+
+\title{Tuning of Brain Structural Network's Complex Laplacian Reveals Canonical Functional Networks}
+
+
+\author{
+  Xihe Xie\thanks{Corresponding author} \\
+  Department of Neuroscience\\
+  Weill Cornell Medicine\\
+  New York, NY 10028 \\
+  \texttt{xix2007@med.cornell.edu} \\
+  %% examples of more authors
+   \And
+  Chang Cai \\
+  Department of Radiology\\
+  University of California, San Francisco\\
+  San Francisco, CA 94143\\
+  \texttt{chang.cai@ucsf.edu} \\
+   \And
+  Pablo F. Damasceno \\
+  Department of Radiology\\
+  University of California, San Francisco\\
+  San Francisco, CA 94143\\
+  \texttt{pablo.damasceno@ucsf.edu}\\
+  \And
+  Srikantan Nagarajan \\
+  %% Affiliation \\
+  University of California, San Francisco\\
+  San Francisco, CA 94143\\
+  \texttt{srikantan.nagarajan@ucsf.edu} \\
+  \And
+  Ashish Raj \\
+  %% Affiliation \\
+  University of California, San Francisco\\
+  San Francisco, CA 94143\\
+  \texttt{ashish.raj@ucsf.edu} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Human brain connectivity obtained via diffusion weighted imaging represent an approximate quantification of the brain's white-matter fiber tract network, however the mechanism that produces functional brain networks from underlying white-matter connections is still unclear. To examine whether common functional activation patterns found in human brains can arise from the structural organization of the brain, we introduce the tuning of transmission velocity and oscillatory frequency to expand upon the graph Laplacian representation of structural connectivity networks into the complex domain. In this work, we show that the structural eigenmodes of the brain's complex Laplacian matrix, without any functional neural activity modeling, is sufficient in reproducing the spatial patterns of canonical functional networks in the human brain. Additionally through optimizing the parameters controlling the complex structural eigenmodes, we show that the structural eigenmodes of the complex Laplacian outperforms the real-valued Laplacian eigenmodes, and particular canonical functional networks have an occupancy preference to specific subsets of the complex structural eigenmodes.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{structural connectivity \and functional networks \and graph Laplacian \and complex Laplacian \and Laplace eigenbasis}
+
+
+\section{Introduction}
+The exploration of structure and function relationships is a fundamental scientific inquiry at all levels of biological organization, and the structure-function relationship of the brain is of immense interest in neuroscience. 
+
+
+\section{Methods}
+\label{sec:methods}
+
+\paragraph{Notation.} In our notation, vectors and matrices are represented in \textbf{bold}, and scalars by normal font. We denote frequency of a signal, in Hertz (Hz), by symbol $f$, and the corresponding angular frequency as $\omega = 2 \pi f$. The structural connectivity matrix is denoted by $\bm{C} = c_{jk}$, consisting of connection strength $c_{jk}$ between any two pairs of brain regions $j,k$.
+
+\subsection{Structural Connectivity Networks} We constructed structural connectivity networks according to the Desikan-Killiany atlas where the brain images were parcellated into 68 cortical regions and 18 subcortical regions as available in the FreeSurfer software \cite{Fischl2002, Desikan2006}. We first obtained openly available diffusion MRI data from the MGH-USC Human Connectome Project to create an average template connectome \cite{McNab2013}. Additionally, we obtained individual structural connectivity networks from 36 subjects' diffusion MRI data. Specifically, \textit{Bedpostx} was used to determine the orientation of brain fibers in conjunction with \textit{FLIRT}, as implemented in the \textit{FSL} software \cite{Jenkinson2012}. Tractography was performed using \textit{probtrackx2} to determine the elements of the adjacency matrix. We initiated 4000 streamlines from each seed voxel corresponding to a cortical or subcortical gray matter structure and tracked how many of these streamlines reached a target gray matter structure. The weighted connection betwen the two structures $c_{i,j}$ was defined as the number of streamlines initiated by voxels in regions $i$ that reach any voxel within region $j$, normalized by the sum of the source and target region volumes ($c_{i,j} = \frac{streamlines}{v_i + v_j}$). This normalization prevents large brain regions from having extremely high connectivity due to having initiated or received many streamline seeds. Afterwards, connection strengths are averaged between both directions ($c_{i,j}$ and $c_{j,i}$) to form undirected edges. Additionally, to determine the geographic location of an edge, the top 95\% of non-zero voxels by streamline count were computed for both edge directions, The consensus edge was defined as the union between both post-threshold sets. As a result, we obtain an undirected, weighted graph representation of the following matrix:
+
+\[ \mathbf{C} = \begin{cases}
+    0 & if i = j\\
+    c_{i,j} & otherwise
+    \end{cases}
+    \]
+
+\subsection{Graph Complex Laplacian Eigenmodes}
+The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}. In our work, we compliment the brain's structural connectivity represented by our graph $C(i,j)$ with a white-matter fiber tract distance adjacency matrix. With the addition of a distance metric, we can expand a symmetric degree normalized Laplacian to a Laplacian matrix with a complex component. In Fourier space, the delays caused by physical fiber tract distances as well as transmission velocity ($\tau^{\nu}_{jk}$) becomes frequency dependent phases. Therefore, we define a "complex connectivity matrix" at any given angular frequency $\omega$ as $\bm{C^{*}}(\omega) = c_{jk} \exp{(-j\omega \tau^{\nu}_{jk})}$. We then define a node-degree normalized complex connectivity matrix at angular frequency $\omega$ as:
+\begin{equation}
+\bm{C}(\omega) = diag(\frac{1}{\bm{deg}}) \bm{C^*}(\omega)    
+\end{equation}
+
+Where the degree vector $\bm{deg}$ is defined as $deg_{k} = \sum_{j}c_{jk}$. Additionally, we define the complex Laplacian matrix as:
+\begin{equation}
+\bm{\mathcal{L}}(\omega) = \bm{I} - \alpha \bm{C}(\omega)
+\end{equation}
+
+Where $I$ is the identity matrix of size $N x N$, this complex Laplacian will be evaluated via the eigen decomposition:
+\begin{equation}
+    \bm{\mathcal{L}}(\omega) = \bm{U}(\omega)\bm{\Lambda}(\omega)\bm{U}(\omega)^{H}
+\end{equation}
+
+Where $\bm{\Lambda}(\omega) = diag([\lambda_{1}(\omega), ... , \lambda_{N}(\omega)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix of the structural connectivity graph $\bm{C^*}(\omega)$ at the angular frequency $\omega$. Finally, $\bm{U}(\omega)$'s are the eigenmodes of the complex Laplacian, which are sorted in ascending order according to the magnitude of their eigenvalues. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, \nu, f}$, which represent the coupling strength between connections, the transmission velocity, and oscillatory frequency respectively. The oscillatory frequency is converted to angular frequency in the Fourier domain by the transform $\omega = 2 \pi f$. 
+
+\subsection{Canonical Functional Networks}
+We chose the canonical functional networks mapped by Yeo et al. \cite{Yeo2011} as the functional states most frequently visited by the human brain. The brain parcellations were created from fMRI recordings of 1000 young, healthy English speaking adults at rest with eyes open. A clustering algorithm was used to parcellate and identify consistently coupled voxels within the brain volume. The results revealed a coarse parcellation of seven networks: limbic, default, visual, frontoparietal, somatomotor, ventral attention, and dorsal attention. 
+
+The canonical functional brain network parcellation was co-registered to brain regions of interest in the gyral based Desikan-Killany atlas \cite{Desikan2006} to match the dimensionality of our complex Laplacian structural eigenmodes. Then spatial activation maps of each canonical network was produced by normalizing the number of voxels per brain region belonging to a specific canonical network by the total number of voxels in the brain region of interest (Fig 1). Both the functional networks and the Desikan-Killiany atlas are openly available for download from Freesurfer \cite{Fischl2012} (http://surfer.nmr.mgh.harvard.edu/).
+
+\subsection{Similarity Analysis}
+With the HCP template connectivity matrix and it's corresponding distance adjacency matrix, we evaluated the Pearson's correlation between the spatial patterns of the seven canonical functional networks and the eigenmodes of the complex Laplacian as a similarity metric. Specifically, for all canonical functional networks, we first scanned through all possible combinations of parameters values by a simple grid search, and obtained the spatial correlation values achieved by both the best performing eigenmodes as well as all the eigenmodes of the complex Laplacian. 
+
+Subsequently, we performed the global optimization technique "basin-hopping" \cite{Wales1997} to find a set of parameters that provided the highest spatial correlation value between each of the canonical functional network and the best performing complex Laplacian eigenmode. To ensure we achieve the global optimal in the nonlinear eigen decomposition process, we initiated the optimization procedure from ten different initial parameter values and selected the optimized parameters resulting from the optimization run that achieved the highest correlation value. While the basin-hopping algorithm always accepts new parameters that map cost function evaluations that improves upon the previous iteration, it will also accept solutions that does not improve upon the previous iteration to move out of local minima. The acceptance probability of this new iteration is $\exp(\frac{-(f(x)_{new} - f(x)_{old})}{T})$, where $f(x)_{new}$ and $f(x)_{old}$ are the current and previous cost function evaluations respectively. $T$ is the "temperature" parameter used in the acceptance/rejection criterion, larger $T$ values indicate that the algorithm is more willing to accept larger jumps in the cost function evaluation. We use a $T$ value of $0.01$ in our optimization schemes as that is a close estimate of the difference between our local minima.
+
+By definition, the structural eigenmodes act as the basis activation patterns for a brain network, and we wanted to determine if a cumulative combination of these structural eigenmodes will improve the spatial similarity between a canonical functional network and a structural basis. In other words, is a functioning brain able to recruit and tune neuronal activity as organized by basis structural patterns to access functional networks. Therefore, after acquiring a set of optimized parameters and structural eigenmodes that provided the highest spatial correlation values for each canonical functional network, we ranked all the structural eigenmodes from the most similar to least similar to each functional network's spatial patterns, and computed the weights that best solves the simple equation:
+\begin{equation}
+    \mathbf{Ax = B}
+\end{equation}
+
+by minimizing the 2-norm of $\mathbf{\norm{B-Ax}}$, where $\mathbf{A}$ is a matrix of structural eigenmodes, $\mathbf{B}$ is the vector representing spatial activation patterns of a particular canonical functional network, and $\mathbf{x}$ is the weights dictating how much each structural eigenmode contributes to a canonical functional network. 
+
+Using the same set of optimized parameters when appropriate, we repeated this analysis for both a real-valued Laplacian without frequency and transmission speed tuning, as well as complex Laplacians obtained from 1000 null connectivity matrices. The null connectivity matrices are constructed with the same sparsity as the HCP template connectivity matrix, and the elements of the adjacency matrix are assigned by randomly sampling from a white-matter fiber tract distance based distribution calculated by $\exp{-\mathbf{distances}}$. 
+
+\section{Result}
+
+\subsection{Structural connectivity based functional activation patterns}
+First, we use the HCP template connectome to demonstrate the complex Laplacian's additional transmission speed and oscillatory frequency parameters provide a wide range of spatial activation patterns. The top row of Figure 2 shows three exemplary structural eigenmodes with high coupling strength and transmission velocity ($\alpha = 2.5, \nu = 30, f = 10$), each eigenmode showing distinct spatial activation patterns: eigenmode 1 has high activity in the lateral temporal brain regions, whereas the medial brain regions of eigenmode 2 has the higher activations, and eigenmode 3 engages inferior brain regions along both the midline and lateral periphery of the brain. On the other hand, the mid row of Figure 2 shows exemplary structural eigenmodes with low coupling and transmission velocity ($\alpha = 0.2, \nu = 5, f = 25$), with eigenmodes 1 and 3 showing left and right hemisphere specific activation around the dorsal brain regions while eigenmode 2 recruits both the frontal and occipital regions in both hemispheres. Consistent with previous works of brain structural eigenmodes \cite{Atasoy2016}, we show that a real valued Laplacian without frequency and transmission speed tuning is capable of producing similar spatial patterns in the last row of Figure 2. The coupling strength parameter $\alpha$ is the only parameter in this case, and we find this overall scaling has very little effect on the elements of individual eigenmodes. All spheres in all glass-brain illustrations are normalized between 0 and 1. 
+
+\subsection{Eigenmodes of the complex Laplacian exhibit canonical functional network activation patterns}
+We re-assigned the voxel-wise parcellations of the seven canonical functional networks from Yeo et al. \cite{Yeo2011} to brain regions from the Desikan-Killiany atlas (Figure 3), this re-sampling of the parcellations allow spatial pattern comparisons of equal dimensions against our eigenmodes. The right side of Figure 3 shows best matching eigenmodes after global optimization of HCP template connectome's eigenmodes to each of the functional networks. In addition to displaying the best performing eigenmode in each case, we also ranked the eigenmodes according to their spatial correlation values and displayed the linear combination of the top 10 performing eigenmodes on the right column of Figure 3. The spatial correlation values of the best performing eigenmode as well as cumulative combinations of eigenmodes are shown in Figure 7.
+
+We find that the best performing eigenmodes for each canonical functional network act as spatially dominant basis, and that linear combinations of additional top performing eigenmodes following the dominant eigenmode improves spatial correlation. This improvement in spatial pattern similarity is most prominent with the default mode and visual networks as shown in Figure 3, where the best fit eigenmode shows hemisphere specific fits, but the 10 cumulative eigenmodes expands the spatial match to both hemispheres. While eigenmode 9 is the best fit for both visual and frontoparietal networks in Figure 3, we show that they have distinctly different spatial patterns due to their parameter differences and eigenvalue sorting. The best fit eigenmodes performed well for the limbic and visual networks, while dorsal and ventral attention networks have the least spatial match with one eigenmode. 
+
+\subsection{Parameter tuning of complex Laplacian eigenmodes}
+To examine the sensitivity of our eigenmodes to our complex Laplacian parameter, we first computed spatial correlation values for the best performing eigenmodes for each canonical functional network across the entire parameter range. From Figure 4, we see that the best achievable spatial correlation for all networks stay consistent as we change the coupling strength parameter, whereas oscillatory frequency tuning causes shifts in spatial similarity between the best performing eigenmode and canonical functional networks (top row). On the other hand, transmission velocity coupled with oscillatory frequency causes drastic shifts in best achievable spatial fit as evident in the bottom row of Figure 4. In both scenarios, the ventral attention network experienced the worst spatial match and the least amount of shift in spatial correlation values. 
+
+To expand our analysis to more than just the best fit eigenmodes, we plotted the spatial correlation values of all structural eigenmodes as we scanned each parameter individually and held the remaining two parameters to their default values: $\alpha = 1, \nu = 10, f = 10$. In Figure 5, we see that in all cases, tuning the complex Laplacian's parameters individually will cause changes in best achievable spatial correlations as well as changes in the specific eigenmode that is producing the highest achievable spatial correlation. Transmission velocity produced the least amount of spatial pattern change while oscillatory frequency caused the most changes in eigenmode spatial patterns. Furthermore, when examining across functional networks, we can find a subset of complex Laplacian parameters and a subset of eigenmodes that have high spatially correlation for each canonical network. This suggests that the brain can specifically select which structural eigenmodes to engage by operating at various combinations of coupling strength, transmission velocity, and oscillatory frequency to perform functional tasks. The spatial correlation patterns of each functional network also implies that there are potentially functional network specific eigenmodes obtainable from the structural complex Laplacian, which will be explored further in the subsequent group level analysis.
+
+\subsection{Complex Laplacian eigenmodes outperform real Laplacian eigenmodes}
+To compare the performance of the complex Laplacian structural eigenmodes, we performed the same similarity analysis with the HCP connectome's real valued Laplacian eigenmodes as well as complex Laplacian eigenmodes of randomly sampled networks. We specifically created 1000 random networks and performed Fisher's r to z transform to produce the 95\% confidence intervals shown in Figure 6. For each combination of eigenmodes, we created a null distribution from the Fisher's r to z values and obtained Bonferroni corrected one-tail p-values for all null distribution comparisons. 
+
+Overall, the complex Laplacian's best performing eigenmodes outperform real valued Laplacian eigenmodes in 6 out of the 7 canonical functional networks as shown in Figure 6. For the complex Laplacian, the best performing eigenmode for the dorsal attention networks has a Bonferronic corrected p-value of $p = 0.0147$, while all other networks achieved p-values below $p = 0.001$ with an exception of $p = 0.0022$ for the somatomotor network. On the other hand, the real Laplacian's best performing eigenmodes for the somatomotor and dorsal attention networks achieved Bonferroni corrected p-values of $p = 0.0099$ and $p = 0.0270$ respectively, the remaining networks did not achieve Bonferroni corrected p-values below $p=0.001$. 
+
+For the cumulative combination of eigenmodes up to a total of 30 eigenmodes as shown in Figure 6, we see an overall upward trend of spatial correlation values and a common temporary dip in spatial correlation around 10 combined eigenmodes. The temporary decrease in spatial correlation may suggest a depletion of dominant eigenmodes for a specific canonical functional network. As a follow-up to the glass-brains displayed in Figure 3, the p-values achieved by the combination of top 10 structural eigenmodes are below $p = 0.001$ for all canonical functional networks except the dorsal attention network ($p = 0.0181$).
+
+\subsection{Group level eigenmode analysis}
+Figure 7 shows a violin plot of the best spatial correlation values achieved by each subject's complex valued Laplacian in orange and real valued Laplacian in blue. Paired T-tests were performed for all canonical functional networks, the complex Laplacian eigenmodes outperform the real value Laplacian eigenmodes on the group level for all networks except the limbic network. The paired T-tests between the two Laplacian types for all remaining networks had Bonferroni corrected p-values below $p = 0.01$. 
+
+Lastly, with the exception of the default mode network, whose best performing structural eigenmodes span across the range of all eigenmodes numbers, all other canonical functional networks exhibit selectivity towards a specific subset of eigenmodes (Figure 8). The limbic and visual networks prefer to occupy structural eigenmodes at both low and high ends of the eigen spectrum, while the dorsal and ventral attention networks mainly occupy the middle of the eigen spectrum. The specific occupancy patterns shown in Figure 8 implies there may be a hierarchy to the canonical functional networks that are accessible by the underlying structural connections of the brain, and the functioning brain minimizes recruitment of unrelated structural connections when engaged in specific tasks. 
+
+\section{Discussion}
+
+
+\bibliographystyle{unsrt}  
+\bibliography{complex_laplacian.bib}  
+
+\end{document}
