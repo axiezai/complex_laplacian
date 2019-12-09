@@ -87,28 +87,44 @@ The exploration of structure and function relationships is a fundamental scienti
 \subsection{Structural Connectivity Networks} We constructed structural connectivity networks according to the Desikan-Killiany atlas where the brain images were parcellated into 68 cortical regions and 18 subcortical regions as available in the FreeSurfer software \cite{Fischl2002, Desikan2006}. We first obtained openly available diffusion MRI data from the MGH-USC Human Connectome Project to create an average template connectome \cite{McNab2013}. Additionally, we obtained individual structural connectivity networks from 36 subjects' diffusion MRI data. Specifically, \textit{Bedpostx} was used to determine the orientation of brain fibers in conjunction with \textit{FLIRT}, as implemented in the \textit{FSL} software \cite{Jenkinson2012}. Tractography was performed using \textit{probtrackx2} to determine the elements of the adjacency matrix. We initiated 4000 streamlines from each seed voxel corresponding to a cortical or subcortical gray matter structure and tracked how many of these streamlines reached a target gray matter structure. The weighted connection betwen the two structures $c_{i,j}$ was defined as the number of streamlines initiated by voxels in regions $i$ that reach any voxel within region $j$, normalized by the sum of the source and target region volumes ($c_{i,j} = \frac{streamlines}{v_i + v_j}$). This normalization prevents large brain regions from having extremely high connectivity due to having initiated or received many streamline seeds. Afterwards, connection strengths are averaged between both directions ($c_{i,j}$ and $c_{j,i}$) to form undirected edges. Additionally, to determine the geographic location of an edge, the top 95\% of non-zero voxels by streamline count were computed for both edge directions, The consensus edge was defined as the union between both post-threshold sets. As a result, we obtain an undirected, weighted graph representation of the following matrix:
 
 \[ \mathbf{C} = \begin{cases}
-    0 & if i = j\\
+    0 & i = j\\
     c_{i,j} & otherwise
     \end{cases}
     \]
 
 \subsection{Graph Complex Laplacian Eigenmodes}
-The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}. In our work, we compliment the brain's structural connectivity represented by our graph $C(i,j)$ with a white-matter fiber tract distance adjacency matrix. With the addition of a distance metric, we can expand a symmetric degree normalized Laplacian to a Laplacian matrix with a complex component. In Fourier space, the delays caused by physical fiber tract distances as well as transmission velocity ($\tau^{\nu}_{jk}$) becomes frequency dependent phases. Therefore, we define a "complex connectivity matrix" at any given angular frequency $\omega$ as $\bm{C^{*}}(\omega) = c_{jk} \exp{(-j\omega \tau^{\nu}_{jk})}$. We then define a node-degree normalized complex connectivity matrix at angular frequency $\omega$ as:
+For a particular brain region $x_i$ in our graph $C$, the simplest possible average dynamic behavior of a neuron population is the first order differential equation with a term of exponential decay rate that is governed by a rate constant $\beta$:
+
 \begin{equation}
-\bm{C}(\omega) = diag(\frac{1}{\bm{deg}}) \bm{C^*}(\omega)    
+    \label{dampedSys}
+      \frac{dx_{1}(t)}{dt} = -\beta x_{1}(t)
 \end{equation}
 
-Where the degree vector $\bm{deg}$ is defined as $deg_{k} = \sum_{j}c_{jk}$. Additionally, we define the complex Laplacian matrix as:
+Where $x_{1}(t)$ is the average neuronal activation signal between all neurons within a region of interest. Thus we can interpret the above equation as the refractory period after neural discharge. But when viewing the brain as a network of interconnected regions, we want to introduce activities originating from other regions:
+
 \begin{equation}
-\bm{\mathcal{L}}(\omega) = \bm{I} - \alpha \bm{C}(\omega)
+  \frac{dx_{i}(t)}{dt} = -\beta (x_{i}(t) - \frac{\alpha}{\pmb{deg_i}} \sum_{i,j} c_{i,j} x_{j}(t-\tau^{\nu}_{i,j}))
 \end{equation}
 
-Where $I$ is the identity matrix of size $N x N$, this complex Laplacian will be evaluated via the eigen decomposition:
-\begin{equation}
-    \bm{\mathcal{L}}(\omega) = \bm{U}(\omega)\bm{\Lambda}(\omega)\bm{U}(\omega)^{H}
+The above equation introduces a connectivity $c_{i,j}$ term, which is normalized by a diagonal degree matrix and scaled by a coupling term $\alpha$. The diagonal degree matrix normalizes the connection strengths between regions by the approximated density of the fiber bundles. $\alpha$ acts as both a coupling constant as well as a parameter to distinguish the rate of diffusion from connected regions from $\beta$. By introducing connectivity, we begin to take into account the distance between each connected regions, therefore the term $\tau^{\nu}_{i,j}$ is introduced as delay, and is computed by dividing fiber tract distance between regions and signal transmission velocity. Now if we transform the above equation into the Fourier domain, we obtain the following complex expression:
+
+\begin{equation} \label{eq:3}
+    \begin{align*}
+        j\omega X(\omega)_{i} &= -\beta X(\omega)_{i} + \frac{\alpha}{\pmb{deg_i}} \sum_j c_{i,j} e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)\\
+        j\omega \bar{X}(\omega) &= -\beta (I - \alpha \Delta^{-\frac{1}{2}} C^{*}(\omega)) \bar{X}(\omega)\\
+        j\omega \bar{X}(\omega) &= -\beta \mathcal{L}\bar{X}(\omega)\\
+    \end{align*}
 \end{equation}
 
-Where $\bm{\Lambda}(\omega) = diag([\lambda_{1}(\omega), ... , \lambda_{N}(\omega)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix of the structural connectivity graph $\bm{C^*}(\omega)$ at the angular frequency $\omega$. Finally, $\bm{U}(\omega)$'s are the eigenmodes of the complex Laplacian, which are sorted in ascending order according to the magnitude of their eigenvalues. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, \nu, f}$, which represent the coupling strength between connections, the transmission velocity, and oscillatory frequency respectively. The oscillatory frequency is converted to angular frequency in the Fourier domain by the transform $\omega = 2 \pi f$. 
+The final equation in equation (3) says signals in the graph $C$ diffuses in a spatial pattern defined by the Laplacian $\mathcal{L}$ at a rate governed by $\beta$. Here, we introduced a complex component to our structural connectivity term as delays become phases in the Fourier domain, specifically, $x(t-\tau^{\nu}_{i,j}) \to e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)$, thus we can define a complex connectivity as a function of angular frequency $\omega$ as $C(\omega) = \frac{1}{\pmb{deg}}C^{*}(\omega)$, where $C^{*}(\omega) = c_{i,j}e^{-j\omega \tau^{\nu}_{i,j}}$. By redefining the connectivity term from above, the complex Laplacian $\mathcal{L}(\omega)$ is then defined as $\mathcal{L}(\omega) = I - \alpha C(\omega)$, where $I$ is the identity matrix of size $N x N$,.
+
+The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}. Here, we compliment the brain's structural connectivity represented by our graph $C(i,j)$ with a white-matter fiber tract distance adjacency matrix. With the addition of a distance metric, we can expand a symmetric degree normalized Laplacian to a Laplacian matrix with a complex component. Next, we decompose the complex Laplacian matrix into it's eigenmodes and eigenvalues:
+
+\begin{equation}
+    \bm{\mathcal{L}}(\alpha, k) = \bm{U}(\alpha, k)\bm{\Lambda}(\alpha, k)\bm{U}(\\alpha, k)^{H}
+\end{equation}
+
+Where $\bm{\Lambda}(\alpha, k) = diag([\lambda_{1}(\alpha, k), ... , \lambda_{N}(\alpha, k)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix of the structural connectivity graph $\bm{C^*}(\omega)$ at the angular frequency $\omega$. Finally, $\bm{U}(\alpha, k)$'s are the eigenmodes of the complex Laplacian, which are sorted in ascending order according to the magnitude of their eigenvalues. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, k}$, which represent the coupling strength between connections and wave number respectively. Wave number is defined as $k = \frac{\omega}{\nu}$ because the oscillatory frequency is converted to angular frequency in the Fourier domain by the transform $\omega = 2 \pi f$.
 
 \subsection{Canonical Functional Networks}
 We chose the canonical functional networks mapped by Yeo et al. \cite{Yeo2011} as the functional states most frequently visited by the human brain. The brain parcellations were created from fMRI recordings of 1000 young, healthy English speaking adults at rest with eyes open. A clustering algorithm was used to parcellate and identify consistently coupled voxels within the brain volume. The results revealed a coarse parcellation of seven networks: limbic, default, visual, frontoparietal, somatomotor, ventral attention, and dorsal attention. 
@@ -116,7 +132,7 @@ We chose the canonical functional networks mapped by Yeo et al. \cite{Yeo2011} a
 The canonical functional brain network parcellation was co-registered to brain regions of interest in the gyral based Desikan-Killany atlas \cite{Desikan2006} to match the dimensionality of our complex Laplacian structural eigenmodes. Then spatial activation maps of each canonical network was produced by normalizing the number of voxels per brain region belonging to a specific canonical network by the total number of voxels in the brain region of interest (Fig 1). Both the functional networks and the Desikan-Killiany atlas are openly available for download from Freesurfer \cite{Fischl2012} (http://surfer.nmr.mgh.harvard.edu/).
 
 \subsection{Similarity Analysis}
-With the HCP template connectivity matrix and it's corresponding distance adjacency matrix, we evaluated the Pearson's correlation between the spatial patterns of the seven canonical functional networks and the eigenmodes of the complex Laplacian as a similarity metric. Specifically, for all canonical functional networks, we first scanned through all possible combinations of parameters values by a simple grid search, and obtained the spatial correlation values achieved by both the best performing eigenmodes as well as all the eigenmodes of the complex Laplacian. 
+With the HCP template connectivity matrix and it's corresponding distance adjacency matrix, we evaluated the Spearman's correlation between the spatial patterns of the seven canonical functional networks and the eigenmodes of the complex Laplacian as a metric of similarity. Specifically, for all canonical functional networks, we first scanned through all possible combinations of parameters values by a simple grid search, and obtained the spatial correlation values achieved by both the best performing eigenmodes as well as all the eigenmodes of the complex Laplacian. 
 
 Subsequently, we performed the global optimization technique "basin-hopping" \cite{Wales1997} to find a set of parameters that provided the highest spatial correlation value between each of the canonical functional network and the best performing complex Laplacian eigenmode. To ensure we achieve the global optimal in the nonlinear eigen decomposition process, we initiated the optimization procedure from ten different initial parameter values and selected the optimized parameters resulting from the optimization run that achieved the highest correlation value. While the basin-hopping algorithm always accepts new parameters that map cost function evaluations that improves upon the previous iteration, it will also accept solutions that does not improve upon the previous iteration to move out of local minima. The acceptance probability of this new iteration is $\exp(\frac{-(f(x)_{new} - f(x)_{old})}{T})$, where $f(x)_{new}$ and $f(x)_{old}$ are the current and previous cost function evaluations respectively. $T$ is the "temperature" parameter used in the acceptance/rejection criterion, larger $T$ values indicate that the algorithm is more willing to accept larger jumps in the cost function evaluation. We use a $T$ value of $0.01$ in our optimization schemes as that is a close estimate of the difference between our local minima.
 
@@ -160,6 +176,6 @@ Lastly, with the exception of the default mode network, whose best performing st
 
 
 \bibliographystyle{unsrt}  
-\bibliography{complex_laplacian.bib}  
+\bibliography{references.bib}  
 
 \end{document}
