@@ -1,15 +1,15 @@
 # Fdb version 3
 ["bibtex complex_laplacian"] 0 "complex_laplacian.aux" "complex_laplacian.bbl" "complex_laplacian" 0
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "complex_laplacian.aux" 1575927542 2733 5cf571187c072aefd13f610110c27475 ""
+  "complex_laplacian.aux" 1575927804 2733 5cf571187c072aefd13f610110c27475 ""
   "complex_laplacian.bcf" 0 -1 0 ""
   "references.bib" 1575926316 9158 6b6a94769fb25113f75489a9a3c10eed ""
   (generated)
   "complex_laplacian.bbl"
-["pdflatex"] 1575927540 "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.tex" "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf" "complex_laplacian" 1575927540
+["pdflatex"] 1575927801 "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.tex" "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf" "complex_laplacian" 1575927801
   "/etc/texmf/web2c/texmf.cnf" 1532927190 1101 af7716885e081ab43982cab7b4672c1a ""
-  "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.aux" 1575927540 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.tex" 1575927538 24339 757adf33f28742f9d5420d420c922814 ""
+  "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.aux" 1575927801 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.tex" 1575927796 24336 a04099744c5c771cb8a4c09a43330d7b ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -165,11 +165,11 @@
   "arxiv.sty" 1575877226 7498 d199701dde90d55deab126b5fe7722fa ""
   "complex_laplacian.aux" 0 -1 0 ""
   "complex_laplacian.bbl" 0 -1 0 "bibtex complex_laplacian"
-  "complex_laplacian.tex" 1575927538 24339 757adf33f28742f9d5420d420c922814 ""
+  "complex_laplacian.tex" 1575927796 24336 a04099744c5c771cb8a4c09a43330d7b ""
   (generated)
+  "complex_laplacian.pdf"
   "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf"
   "complex_laplacian.log"
-  "complex_laplacian.out"
-  "complex_laplacian.pdf"
   "/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.log"
   "complex_laplacian.aux"
+  "complex_laplacian.out"
