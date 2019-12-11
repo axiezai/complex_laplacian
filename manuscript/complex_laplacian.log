@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.26)  9 DEC 2019 13:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.26)  11 DEC 2019 15:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1762,6 +1762,7 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 66.
 LaTeX Info: Redefining \pageref on input line 66.
 LaTeX Info: Redefining \nameref on input line 66.
+ (/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out) (/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out)
 \@outlinefile=\write3
 \openout3 = `complex_laplacian.out'.
 
@@ -1837,93 +1838,33 @@ Underfull \vbox (badness 2913) has occurred while \output is active []
  [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] (/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package natbib Warning: Citation `Fischl2002' on page 2 undefined on input line 87.
-
-
-Package natbib Warning: Citation `Desikan2006' on page 2 undefined on input line 87.
-
-
-Package natbib Warning: Citation `McNab2013' on page 2 undefined on input line 87.
-
-
-Package natbib Warning: Citation `Jenkinson2012' on page 2 undefined on input line 87.
-
-
-/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.tex:116: Package amsmath Error: Erroneous nesting of equation structures;
-(amsmath)                trying to recover with `aligned'.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.116     \end{align*}
-                      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[2]
-
-Package natbib Warning: Citation `Stewart1999' on page 3 undefined on input line 121.
-
-
-Package natbib Warning: Citation `Yeo2011' on page 3 undefined on input line 130.
-
-
-Package natbib Warning: Citation `Desikan2006' on page 3 undefined on input line 132.
-
-
-Package natbib Warning: Citation `Fischl2012' on page 3 undefined on input line 132.
-
-
-Package natbib Warning: Citation `Wales1997' on page 3 undefined on input line 137.
-
-[3]
-
-Package natbib Warning: Citation `Atasoy2016' on page 4 undefined on input line 151.
-
-
-Package natbib Warning: Citation `Yeo2011' on page 4 undefined on input line 154.
-
-[4]
-No file complex_laplacian.bbl.
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
+ [5])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
  (/home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 181.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
-
-
-Package rerunfilecheck Warning: File `complex_laplacian.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `complex_laplacian.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  4AD55EB8C9A56BCAA63A8BFCD15588F7;1029.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 181.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 180.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 180.
+Package rerunfilecheck Info: File `complex_laplacian.out' has not changed.
+(rerunfilecheck)             Checksum: 4AD55EB8C9A56BCAA63A8BFCD15588F7;1029.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
  ) 
 Here is how much of TeX's memory you used:
- 17666 strings out of 493029
- 296639 string characters out of 6136233
- 493787 words of memory out of 5000000
- 20814 multiletter control sequences out of 15000+600000
- 56958 words of font info for 160 fonts, out of 8000000 for 9000
+ 17722 strings out of 493029
+ 297891 string characters out of 6136233
+ 494922 words of memory out of 5000000
+ 20845 multiletter control sequences out of 15000+600000
+ 57327 words of font info for 165 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,11n,45p,10470b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,11n,45p,10470b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf (5 pages, 218358 bytes).
+Output written on /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf (6 pages, 225266 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 27137 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 198 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 27241 words of extra memory for PDF output out of 29859 (max. 10000000)
 

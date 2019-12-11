@@ -108,12 +108,12 @@ Where $x_{1}(t)$ is the average neuronal activation signal between all neurons w
 
 The above equation introduces a connectivity $c_{i,j}$ term, which is normalized by a diagonal degree matrix and scaled by a coupling term $\alpha$. The diagonal degree matrix normalizes the connection strengths between regions by the approximated density of the fiber bundles. $\alpha$ acts as both a coupling constant as well as a parameter to distinguish the rate of diffusion from connected regions from $\beta$. By introducing connectivity, we begin to take into account the distance between each connected regions, therefore the term $\tau^{\nu}_{i,j}$ is introduced as delay, and is computed by dividing fiber tract distance between regions and signal transmission velocity. Now if we transform the above equation into the Fourier domain, we obtain the following complex expression:
 
-\begin{equation} \label{eq:3}
-    \begin{align*}
+\begin{equation}
+    \begin{aligned}
         j\omega X(\omega)_{i} &= -\beta X(\omega)_{i} + \frac{\alpha}{\pmb{deg_i}} \sum_j c_{i,j} e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)\\
         j\omega \bar{X}(\omega) &= -\beta (I - \alpha \Delta^{-\frac{1}{2}} C^{*}(\omega)) \bar{X}(\omega)\\
         j\omega \bar{X}(\omega) &= -\beta \mathcal{L}\bar{X}(\omega)\\
-    \end{align*}
+    \end{aligned}
 \end{equation}
 
 The final equation in equation (3) says signals in the graph $C$ diffuses in a spatial pattern defined by the Laplacian $\mathcal{L}$ at a rate governed by $\beta$. Here, we introduced a complex component to our structural connectivity term as delays become phases in the Fourier domain, specifically, $x(t-\tau^{\nu}_{i,j}) \to e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)$, thus we can define a complex connectivity as a function of angular frequency $\omega$ as $C(\omega) = \frac{1}{\pmb{deg}}C^{*}(\omega)$, where $C^{*}(\omega) = c_{i,j}e^{-j\omega \tau^{\nu}_{i,j}}$. By redefining the connectivity term from above, the complex Laplacian $\mathcal{L}(\omega)$ is then defined as $\mathcal{L}(\omega) = I - \alpha C(\omega)$, where $I$ is the identity matrix of size $N x N$,.
@@ -121,7 +121,7 @@ The final equation in equation (3) says signals in the graph $C$ diffuses in a s
 The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}. Here, we compliment the brain's structural connectivity represented by our graph $C(i,j)$ with a white-matter fiber tract distance adjacency matrix. With the addition of a distance metric, we can expand a symmetric degree normalized Laplacian to a Laplacian matrix with a complex component. Next, we decompose the complex Laplacian matrix into it's eigenmodes and eigenvalues:
 
 \begin{equation}
-    \bm{\mathcal{L}}(\alpha, k) = \bm{U}(\alpha, k)\bm{\Lambda}(\alpha, k)\bm{U}(\\alpha, k)^{H}
+    \bm{\mathcal{L}}(\alpha, k) = \bm{U}(\alpha, k)\bm{\Lambda}(\alpha, k)\bm{U}(\alpha, k)^{H}
 \end{equation}
 
 Where $\bm{\Lambda}(\alpha, k) = diag([\lambda_{1}(\alpha, k), ... , \lambda_{N}(\alpha, k)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix of the structural connectivity graph $\bm{C^*}(\omega)$ at the angular frequency $\omega$. Finally, $\bm{U}(\alpha, k)$'s are the eigenmodes of the complex Laplacian, which are sorted in ascending order according to the magnitude of their eigenvalues. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, k}$, which represent the coupling strength between connections and wave number respectively. Wave number is defined as $k = \frac{\omega}{\nu}$ because the oscillatory frequency is converted to angular frequency in the Fourier domain by the transform $\omega = 2 \pi f$.
@@ -173,7 +173,6 @@ Figure 7 shows a violin plot of the best spatial correlation values achieved by 
 Lastly, with the exception of the default mode network, whose best performing structural eigenmodes span across the range of all eigenmodes numbers, all other canonical functional networks exhibit selectivity towards a specific subset of eigenmodes (Figure 8). The limbic and visual networks prefer to occupy structural eigenmodes at both low and high ends of the eigen spectrum, while the dorsal and ventral attention networks mainly occupy the middle of the eigen spectrum. The specific occupancy patterns shown in Figure 8 implies there may be a hierarchy to the canonical functional networks that are accessible by the underlying structural connections of the brain, and the functioning brain minimizes recruitment of unrelated structural connections when engaged in specific tasks. 
 
 \section{Discussion}
-
 
 \bibliographystyle{unsrt}  
 \bibliography{references.bib}  

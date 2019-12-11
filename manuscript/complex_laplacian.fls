@@ -148,8 +148,14 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-OUTPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
 OUTPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.pdf
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
+OUTPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
 INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -238,6 +244,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.bbl
+INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.bbl
 INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.aux
 INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
 INPUT /home/axiezai/lab/brain-scfc/complex_laplacian/manuscript/complex_laplacian.out
