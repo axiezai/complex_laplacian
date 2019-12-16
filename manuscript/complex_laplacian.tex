@@ -34,25 +34,27 @@
   %% examples of more authors
    \And
   Chang Cai \\
-  Department of Radiology\\
+  Department of Radiology and Biomedical Imaging\\
   University of California, San Francisco\\
   San Francisco, CA 94143\\
   \texttt{chang.cai@ucsf.edu} \\
    \And
   Pablo F. Damasceno \\
-  Department of Radiology\\
+  Department of Radiology and Biomedical Imaging\\
   University of California, San Francisco\\
   San Francisco, CA 94143\\
   \texttt{pablo.damasceno@ucsf.edu}\\
   \And
   Srikantan Nagarajan \\
   %% Affiliation \\
+  Department of Radiology and Biomedical Imaging\\
   University of California, San Francisco\\
   San Francisco, CA 94143\\
   \texttt{srikantan.nagarajan@ucsf.edu} \\
   \And
   Ashish Raj \\
   %% Affiliation \\
+  Department of Radiology and Biomedical Imaging\\
   University of California, San Francisco\\
   San Francisco, CA 94143\\
   \texttt{ashish.raj@ucsf.edu} \\
@@ -67,13 +69,11 @@
 \maketitle
 
 \begin{abstract}
-Human brain connectivity obtained via diffusion weighted imaging represent an approximate quantification of the brain's white-matter fiber tract network, however the mechanism that produces functional brain networks from underlying white-matter connections is still unclear. To examine whether common functional activation patterns found in human brains can arise from the structural organization of the brain, we introduce the tuning of transmission velocity and oscillatory frequency to expand upon the graph Laplacian representation of structural connectivity networks into the complex domain. In this work, we show that the structural eigenmodes of the brain's complex Laplacian matrix, without any functional neural activity modeling, is sufficient in reproducing the spatial patterns of canonical functional networks in the human brain. Additionally through optimizing the parameters controlling the complex structural eigenmodes, we show that the structural eigenmodes of the complex Laplacian outperforms the real-valued Laplacian eigenmodes, and particular canonical functional networks have an occupancy preference to specific subsets of the complex structural eigenmodes.
+Human brain connectivity obtained via diffusion weighted imaging represent an approximate quantification of the brain's white-matter fiber tract network, however the mechanism that produces functional brain networks from underlying white-matter connections is still unclear. Efforts in correlational analysis, effective connectivity, and graphical models of brain networks have all provided insight into how the brain's function is linked to its structure. Here, we make use of both the structural connectome and its corresponding fiber tract distance adjacency matrix to summarize how resting-state functional activation patterns arise from the underlying structural connections of the brain. The distance adjacency matrix introduces a delay to signals being transmitted in the network, from which we are able to extract complex eigen basis of the graph Laplacian. In this work, we show that the structural eigenmodes of the brain's complex Laplacian matrix, without any functional neural activity modeling, is sufficient in reproducing the spatial patterns of canonical functional networks in the human brain. Additionally through optimizing the parameters controlling the complex structural eigenmodes, we show that the structural eigenmodes of the complex Laplacian outperforms the real-valued Laplacian eigenmodes, and particular canonical functional networks have an occupancy preference to specific subsets of the complex structural eigenmodes. 
 \end{abstract}
 
-
 % keywords can be removed
-\keywords{structural connectivity \and functional networks \and graph Laplacian \and complex Laplacian \and Laplace eigenbasis}
-
+\keywords{structural connectivity \and functional networks \and graph Laplacian \and complex Laplacian}
 
 \section{Introduction}
 The exploration of structure and function relationships is a fundamental scientific inquiry at all levels of biological organization, and the structure-function relationship of the brain is of immense interest in neuroscience. 
