@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Fischl2002}
 Bruce Fischl, David~H Salat, Evelina Busa, Marilyn Albert, Megan Dieterich,
@@ -35,6 +35,11 @@ Mark Jenkinson, Christian~F. Beckmann, Timothy~E.J. Behrens, Mark~W. Woolrich,
 Ian Stewart.
 \newblock {Holes and hot spots}.
 \newblock {\em Nature}, 401(6756):863--865, oct 1999.
+
+\bibitem{French1971}
+A.P. French.
+\newblock {\em Vibrations and Waves}.
+\newblock M.I.T. introductory physics series. Taylor \& Francis, 1971.
 
 \bibitem{Yeo2011}
 B~T~Thomas Yeo, Fenna~M Krienen, Jorge Sepulcre, Mert~R Sabuncu, Danial

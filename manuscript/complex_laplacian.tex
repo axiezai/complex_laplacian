@@ -93,38 +93,36 @@ The exploration of structure and function relationships is a fundamental scienti
     \]
 
 \subsection{Graph Complex Laplacian Eigenmodes}
-For a particular brain region $x_i$ in our graph $C$, the simplest possible average dynamic behavior of a neuron population is the first order differential equation with a term of exponential decay rate that is governed by a rate constant $\beta$:
+For the undirected, weighted graph representation of the structural network $c_{i,j}$, we model the average neuronal activation signal for the $i$-th region as $x_{i}(t)$:
+
+\begin{equation} \label{eq1}
+\frac{dx_{i}(t)}{dt} = -\beta (x_{i}(t) - \frac{\alpha}{\sqrt{deg_i}\sqrt{deg_j}} \sum_{i,j} c_{i,j} x_{j}(t-\tau^{\nu}_{i,j}))
+\end{equation} 
+
+Where the first term is an exponential decay describing the refractory period after neuronal discharge with a rate constant $\beta$. The second term is the input signal from the $j$-th regions connected to region $i$ scaled by the connection strength from $c_{i,j}$, normalized by row and column degree, and delayed by $t-\tau^{\nu}_{i,j}$. The term $\tau^{\nu}_{i,j}$ is the delay in seconds obtained by dividing the distance adjacency matrix $D$ by transmission velocity $\nu$. The parameter $\alpha$ acts as both a global coupling parameter as well as a diffusion rate constant to distinguish the diffusion dynamics from $\beta$. The delays between connected brain regions turns into phase shifts in the frequency profiles of the oscillating signals, we transform \ref{eq1} into the frequency domain by utilizing the Fourier transforms $\frac{dx_{i}(t)}{dt} \to j\omega x_{i}(\omega)$ and $x(t-\tau^{\nu}_{i,j}) \to e^{-j\omega \tau^{\nu}_{i,j}} x_{i}(\omega)$:
 
 \begin{equation}
-    \label{dampedSys}
-      \frac{dx_{1}(t)}{dt} = -\beta x_{1}(t)
+\label{eq2}
+j\omega x_{i}(\omega) = -\beta x_{i}(\omega) + \frac{\alpha}{\sqrt{deg_i}\sqrt{deg_j}} \sum_j c_{i,j} e^{-j\omega \tau^{\nu}_{i,j}} x_{i}(\omega)
 \end{equation}
 
-Where $x_{1}(t)$ is the average neuronal activation signal between all neurons within a region of interest. Thus we can interpret the above equation as the refractory period after neural discharge. But when viewing the brain as a network of interconnected regions, we want to introduce activities originating from other regions:
+Where oscillatory frequency $\omega = 2 \pi f$. Instead of following individual regions $x_{i}$, we re-write (\ref{eq2}) in matrix form so that $\bar{X}(\omega)$ includes all brain regions as its rows and each frequency bin's magnitude as it's columns. Additionally, we combine the degree normalization term $\sqrt{deg_i}\sqrt{deg_j}$ as $\Delta$ and define a complex connectivity term $C^{*}(\omega) = \Delta^{-1} c_{i,j}e^{-j\omega \tau^{\nu}_{i,j}}$. Then (\ref{eq2}) becomes:
 
 \begin{equation}
-  \frac{dx_{i}(t)}{dt} = -\beta (x_{i}(t) - \frac{\alpha}{\pmb{deg_i}} \sum_{i,j} c_{i,j} x_{j}(t-\tau^{\nu}_{i,j}))
+\label{eq3}
+j\omega \bar{X}(\omega) = -\beta (I - \alpha C(\omega)) \bar{X}(\omega)
 \end{equation}
 
-The above equation introduces a connectivity $c_{i,j}$ term, which is normalized by a diagonal degree matrix and scaled by a coupling term $\alpha$. The diagonal degree matrix normalizes the connection strengths between regions by the approximated density of the fiber bundles. $\alpha$ acts as both a coupling constant as well as a parameter to distinguish the rate of diffusion from connected regions from $\beta$. By introducing connectivity, we begin to take into account the distance between each connected regions, therefore the term $\tau^{\nu}_{i,j}$ is introduced as delay, and is computed by dividing fiber tract distance between regions and signal transmission velocity. Now if we transform the above equation into the Fourier domain, we obtain the following complex expression:
+By factoring out the diffusion constant $\beta$ from both terms, and having $\alpha$ act solely as the global coupling parameter, we obtain the expression $\mathcal{L} = (\omega) = I - \alpha C(\omega)$, where $I$ is the identity matrix and $\mathcal{L}(\omega)$ is the complex Laplacian matrix.
+
+The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}, and its eigenmodes (or Fourier basis) are the orthonormal basis that represent particular transmission patterns on the network. The eigenvalues and eigenmodes of the complex Laplacian matrix can be obtained via the following decomposition:
 
 \begin{equation}
-    \begin{aligned}
-        j\omega X(\omega)_{i} &= -\beta X(\omega)_{i} + \frac{\alpha}{\pmb{deg_i}} \sum_j c_{i,j} e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)\\
-        j\omega \bar{X}(\omega) &= -\beta (I - \alpha \Delta^{-\frac{1}{2}} C^{*}(\omega)) \bar{X}(\omega)\\
-        j\omega \bar{X}(\omega) &= -\beta \mathcal{L}\bar{X}(\omega)\\
-    \end{aligned}
+\label{eq4}
+\bm{\mathcal{L}}(\alpha, k) = \bm{U}(\alpha, k)\bm{\Lambda}(\alpha, k)\bm{U}(\alpha, k)^{H}
 \end{equation}
 
-The final equation in equation (3) says signals in the graph $C$ diffuses in a spatial pattern defined by the Laplacian $\mathcal{L}$ at a rate governed by $\beta$. Here, we introduced a complex component to our structural connectivity term as delays become phases in the Fourier domain, specifically, $x(t-\tau^{\nu}_{i,j}) \to e^{-j\omega \tau^{\nu}_{i,j}} X(\omega)$, thus we can define a complex connectivity as a function of angular frequency $\omega$ as $C(\omega) = \frac{1}{\pmb{deg}}C^{*}(\omega)$, where $C^{*}(\omega) = c_{i,j}e^{-j\omega \tau^{\nu}_{i,j}}$. By redefining the connectivity term from above, the complex Laplacian $\mathcal{L}(\omega)$ is then defined as $\mathcal{L}(\omega) = I - \alpha C(\omega)$, where $I$ is the identity matrix of size $N x N$,.
-
-The Laplacian matrix representation of a network can be used to find characteristic properties of the network \cite{Stewart1999}. Here, we compliment the brain's structural connectivity represented by our graph $C(i,j)$ with a white-matter fiber tract distance adjacency matrix. With the addition of a distance metric, we can expand a symmetric degree normalized Laplacian to a Laplacian matrix with a complex component. Next, we decompose the complex Laplacian matrix into it's eigenmodes and eigenvalues:
-
-\begin{equation}
-    \bm{\mathcal{L}}(\alpha, k) = \bm{U}(\alpha, k)\bm{\Lambda}(\alpha, k)\bm{U}(\alpha, k)^{H}
-\end{equation}
-
-Where $\bm{\Lambda}(\alpha, k) = diag([\lambda_{1}(\alpha, k), ... , \lambda_{N}(\alpha, k)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix of the structural connectivity graph $\bm{C^*}(\omega)$ at the angular frequency $\omega$. Finally, $\bm{U}(\alpha, k)$'s are the eigenmodes of the complex Laplacian, which are sorted in ascending order according to the magnitude of their eigenvalues. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, k}$, which represent the coupling strength between connections and wave number respectively. Wave number is defined as $k = \frac{\omega}{\nu}$ because the oscillatory frequency is converted to angular frequency in the Fourier domain by the transform $\omega = 2 \pi f$.
+Where $\bm{\Lambda}(\alpha, k) = diag([\lambda_{1}(\alpha, k), ... , \lambda_{N}(\alpha, k)])$ is a diagonal matrix consisting of eigenvalues of the complex Laplacian matrix and $\bm{U}(\alpha, k)$'s are the eigenmodes of the complex Laplacian matrix. The eigenmodes consist of values that represent the relative amount of activation in each parcellated brain region. These eigenmodes are tunable by the set of parameters ${\alpha, k}$, which represent the global coupling strength between connections and wave number respectively. Wave number is defined as $k = \frac{\omega}{\nu}$, with $\nu$ being the transmission velocity for a signal in the network. The wave number is measured in cycles per unit distance, and can be interpreted as the spatial frequency of a wave \cite{French1971}. 
 
 \subsection{Canonical Functional Networks}
 We chose the canonical functional networks mapped by Yeo et al. \cite{Yeo2011} as the functional states most frequently visited by the human brain. The brain parcellations were created from fMRI recordings of 1000 young, healthy English speaking adults at rest with eyes open. A clustering algorithm was used to parcellate and identify consistently coupled voxels within the brain volume. The results revealed a coarse parcellation of seven networks: limbic, default, visual, frontoparietal, somatomotor, ventral attention, and dorsal attention. 
