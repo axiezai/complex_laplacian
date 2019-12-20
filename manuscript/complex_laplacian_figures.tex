@@ -27,7 +27,7 @@
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{../figures/fig1/fig1_overview_v3.pdf}
-  \caption{The analysis overview. Structural connectivity matrix and distance adjacency matrix were extracted from diffusion MRI data, the values in the matrices were viewed as nodes and edges metrics in a network. We perform an eigen decomposition on the network's complex Laplacian to obtain structural eigenmodes of the brain, then we compare the spatial similarities between the structural eigenmodes and canonical functional networks. Here we show brain rendering of the first eigenmode from the HCP template connectivity matrix (yellow spheres) and the visual functional network (blue spheres) as an example. The size of the spheres represent the amount of participation in a particular network from each brain region.}
+  \caption{The analysis overview. Structural connectivity matrix ($C$) and distance adjacency matrix ($D$) were extracted from diffusion MRI data, the values in the matrices were viewed as nodes and edges metrics in a network. We perform an eigen decomposition on the network's complex Laplacian ($\mathcal{L}$) to obtain structural eigenmodes of the brain ($U$), then we compare the spatial similarities between the structural eigenmodes and canonical functional networks. Here we show brain rendering of the first eigenmode from the HCP template connectivity matrix (yellow spheres) and the visual functional network (blue spheres) as an example. The size of the spheres represent the amount of participation in a particular network from each brain region.}
   \label{fig:fig1}
 \end{figure}
 
@@ -52,33 +52,39 @@
 \label{fig:fig4}
 \end{figure}
 
-\caption{Parameter control of best performing eigenmodes. The highest spatial correlation values achieved by the best performing eigenmode for each functional network is shown as a function of tuning parameters. Coupling strength ($\alpha = [0.1, 5]$) does not affect the eigenmodes' spatial patterns while oscillatory frequency ($f = [2, 45]$ Hz) does as shown on top. On the other hand, The spatial patterns of the structural eigenmodes are more sensitive to transmission velocity ($\nu = [5, 20]$ m/s) as shown on the bottom row. Colorbar indicates spatial similarity as measured by Spearman's correlation.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\caption{Parameter control of best performing eigenmodes. The highest spatial correlation values achieved by the best performing eigenmode for each functional network is shown as a function of tuning parameters. Coupling strength ($\alpha = [0.1, 5]$) does not affect the eigenmodes' spatial patterns while oscillatory frequency ($f = [2, 45]$ Hz) does as shown on top. On the other hand, The spatial patterns of the structural eigenmodes are more sensitive to transmission velocity ($\nu = [5, 20]$ m/s) as shown on the bottom row. Colorbar indicates spatial similarity as measured by Spearman's correlation.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width = 0.9\linewidth]{../figures/fig5/f5_compiled.pdf}
-\caption{Parameter control of best performing eigenmodes. The highest spatial correlation values achieved by the best performing eigenmode for each functional network is shown as a function of tuning parameters. Coupling strength ($\alpha = [0.5, 4.5]$) does not affect the eigenmodes' spatial patterns while wave number ($k = [0, 100]$) does as shown on top. Additionally, the spatial patterns of the structural eigenmodes are sensitive to both factors contributing to wave number (transmission velocity ($\nu = [5, 20]$ m/s) and oscillatory frequency ($f = [2, 47]Hz$)) as shown on the bottom row. Colorbar indicates spatial similarity as measured by Spearman's correlation.}
-\label{fig:fig5}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% This figure is moved to Supplements %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width = 0.9\linewidth]{../figures/fig5/f5_compiled.pdf}
+%\caption{Parameter control of best performing eigenmodes. The highest spatial correlation values achieved by the best performing eigenmode for each functional network is shown as a function of tuning parameters. Coupling strength ($\alpha = [0.5, 4.5]$) does not affect the eigenmodes' spatial patterns while wave number ($k = [0, 100]$) does as shown on top. Additionally, the spatial patterns of the structural eigenmodes are sensitive to both factors contributing to wave number (transmission velocity ($\nu = [5, 20]$ m/s) and oscillatory frequency ($f = [2, 47]Hz$)) as shown on the bottom row. Colorbar indicates spatial similarity as measured by Spearman's correlation.}
+%\label{fig:fig5}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width = 0.9\linewidth]{../figures/fig6/spearmanr.png}
 \caption{Cumulative combinations of structural eigenmodes improves spatial matching with canonical functional networks. For each canonical functional network, we compared its spatial patterns with eigenmodes obtained from the complex Laplacian (orange), real Laplacian (blue), complex Laplacians obtained from 1000 permutations of random connectivity matrices (green). In all cases, the spatial similarity between canonical functional networks and structural eigenmodes increase as we cumulatively combine top performing eigenmodes. The complex laplacian eigenmodes were able to outperform the random Laplacians in all cases. Additionally, with the exception of somatomotor and dorsal attention networks, the complex Laplacian clearly outperforms the real Laplacian with only the first eigenmode.}
-\label{fig:fig6}
+\label{fig:fig5}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 0.9\linewidth]{figures/reg_com_laplacian_subjects_correlations.pdf}
+\includegraphics[width = 0.9\linewidth]{../figures/reg_com_laplacian_subjects_correlations.pdf}
 \caption{Complex Laplacian outperforms real Laplacian in recapitulating canonical functional networks. Violin plot showing that on a group level (each dot correspond to one subject, $n = 36$), the structural eigenmodes of the complex Laplacian outperforms the corresponding eigenmodes from a real Laplacian. The only group comparison that failed to achieve significance under a paired t-test is the limbic network ($p = 0.64$).}
-\label{fig:fig7}
+\label{fig:fig6}
 \end{figure}
 
 
 \begin{figure}[ht]
-\includegraphics[width = 0.9\linewidth]{figures/eigen_numbers.pdf}
+\includegraphics[width = 0.9\linewidth]{../figures/eigen_numbers.pdf}
 \caption{Canonical functional networks have complex Laplacian eigenmode specificity. Each dot on the violin plot corresponds to the best performing eigenmode number. Showing that across all subjects ($n = 36$), canonical functional networks occupies specific structural eigenmodes as the dominant structural basis. Default mode network is the exception as the best performing eigenmode spans across all eigenmodes. On the other hand, the rest of the canonical functional networks cluster to specific eigenmode numbers.}
-\label{fig:fig8}
+\label{fig:fig7}
 \end{figure}
 \end{document}
