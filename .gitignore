@@ -44,4 +44,5 @@ venv.bak/
 
 # repo specific:
 data/*.h5
+data/bh_pearson
 figures/
