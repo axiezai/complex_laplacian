@@ -47,8 +47,8 @@
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 0.9\linewidth]{../figures/fig4/f4_compiled.pdf}
-\caption{Parameter control of all complex Laplacian structural eigenmodes. Heatmaps displaying spatial correlation values of all complex Laplacian eigenmodes span by all parameters values for each network. Coupling strength ($\alpha$, top) and wave number ($k$, bottom) all exhibit control over structural eigenmode's occupation of certain functional networks. Specifically, shifts in parameter values can cause a change in selection of the best matching structural eigenmode.}
+\includegraphics[width = 0.9\linewidth]{../figures/fig4/parameters.pdf}
+\caption{Structural eigenmode spatial similarity to canonical functional networks has parameter dependency. Heatmaps displaying spatial correlation values of all complex Laplacian eigenmodes span by parameters values for each network. Coupling strength ($\alpha$, top) and wave number ($k$, bottom) all exhibit control over structural eigenmode's occupation of certain functional networks. Specifically, shifts in parameter values can cause a change in selection of the best matching structural eigenmode.}
 \label{fig:fig4}
 \end{figure}
 
@@ -69,21 +69,21 @@
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 0.9\linewidth]{../figures/fig6/combined.png}
-\caption{Cumulative combinations of structural eigenmodes improves spatial matching with canonical functional networks. For each canonical functional network, we compared its spatial patterns with eigenmodes obtained from the complex Laplacian (orange), real Laplacian (blue), complex Laplacians obtained from 1000 permutations of random connectivity matrices (green). The comparisons were performed with both Spearman's correlation (top) and Pearson's correlation (bottom). In all cases, the spatial similarity between canonical functional networks and structural eigenmodes increase as we cumulatively combine structural eigenmodes. The complex Laplacian eigenmodes were able to outperform the random Laplacian in all cases with just the best performing eigenmode. However, the real Laplacian required combinations of eigenmodes to outperform the random Laplacian in some cases. Lastly, eigenmodes of the complex Laplacian are more similar to canonical functional networks than eigenmodes of the real Laplacian with the Limbic network being the only exception.}
+\includegraphics[width = 0.9\linewidth]{../figures/fig5/spatial_correlation.pdf}
+\caption{Structural eigenmodes of the HCP template complex Laplacian predicts canonical functional networks better than structural eigenmodes of the real Laplacian. For each canonical functional network, we compared its spatial patterns with eigenmodes obtained from the complex Laplacian (orange), real Laplacian (blue), complex Laplacians obtained from 1000 permutations of random connectivity matrices (green). The comparisons were performed with both Spearman's correlation (top) and Pearson's correlation (bottom). In all cases, the spatial similarity between canonical functional networks and structural eigenmodes increase as we cumulatively combine structural eigenmodes. The complex Laplacian eigenmodes were able to outperform the random Laplacian in all cases with just the best performing eigenmode. However, the real Laplacian required combinations of eigenmodes to outperform the random Laplacian in some cases. Lastly, eigenmodes of the complex Laplacian are more similar to canonical functional networks than eigenmodes of the real Laplacian with the Limbic network being the only exception.}
 \label{fig:fig5}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 0.9\linewidth]{../figures/reg_com_laplacian_subjects_correlations.pdf}
-\caption{Complex Laplacian outperforms real Laplacian in recapitulating canonical functional networks. Violin plot showing that on a group level (each dot correspond to one subject, $n = 36$), the structural eigenmodes of the complex Laplacian outperforms the corresponding eigenmodes from a real Laplacian. The only group comparison that failed to achieve significance under a paired t-test is the limbic network ($p = 0.64$).}
+\includegraphics[width = 0.9\linewidth]{../figures/fig6/reg_com_laplacian_subjects_correlations.pdf}
+\caption{Complex Laplacian outperforms real Laplacian in recapitulating canonical functional networks. Violin plot showing that on a group level (each dot correspond to one subject, $n = 36$), the best performing structural eigenmodes of the complex Laplacian outperforms the corresponding structural eigenmode from the real Laplacian. The only group comparison that failed to achieve significance under a paired t-test is the limbic network ($p = 0.64$).}
 \label{fig:fig6}
 \end{figure}
 
 
 \begin{figure}[ht]
-\includegraphics[width = 0.9\linewidth]{../figures/eigen_numbers.pdf}
+\includegraphics[width = 0.9\linewidth]{../figures/fig7/eigen_numbers.pdf}
 \caption{Canonical functional networks have complex Laplacian eigenmode specificity. Each dot on the violin plot corresponds to the best performing eigenmode number. Showing that across all subjects ($n = 36$), canonical functional networks occupies specific structural eigenmodes as the dominant structural basis. Default mode network is the exception as the best performing eigenmode spans across all eigenmodes. On the other hand, the rest of the canonical functional networks cluster to specific eigenmode numbers.}
 \label{fig:fig7}
 \end{figure}
