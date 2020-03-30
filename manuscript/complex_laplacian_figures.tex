@@ -27,20 +27,20 @@
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{../figures/fig1/fig1_overview_v3.pdf}
-  \caption{The analysis overview. Structural connectivity matrix ($C$) and distance adjacency matrix ($D$) were extracted from diffusion MRI data, the values in the matrices were viewed as nodes and edges metrics in a network. We perform an eigen decomposition on the network's complex Laplacian ($\mathcal{L}$) to obtain structural eigenmodes of the brain ($U$), then we compare the spatial similarities between the structural eigenmodes and canonical functional networks. Here we show brain surface rendering of the first eigenmode from the HCP template connectivity matrix and the visual functional network as an example.}
+  \caption{The analysis overview. Structural connectivity matrix ($C$) and distance adjacency matrix ($D$) were extracted from diffusion MRI data, the values in the matrices were viewed as nodes and edges metrics in a network. We perform an eigen decomposition on the network's complex Laplacian ($\mathcal{L}$) to obtain structural eigenmodes of the brain ($U$), then we compare the spatial similarities between the structural eigenmodes and canonical functional networks. Here we show brain rendering of the first eigenmode from the HCP template connectivity matrix (yellow spheres) and the visual functional network (blue spheres) as an example. The size of the spheres represent the amount of participation in a particular network from each brain region.}
   \label{fig:fig1}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
- \includegraphics[width = \linewidth]{../figures/fig2/eigmode_examples.pdf}
- \caption{Complex Laplacian eigenmode examples. Here we illustrate three representative eigenmodes from the complex Laplacian with different tuning parameters as well as three representative eigenmodes from the real Laplacian without transmission speed and distance delay properties. The top and middle row shows brain renderings of the complex Laplacian eigenmodes with {$\alpha = 2.5, k = 2$} and {$alpha = 0.2, k = 8$} respectively. The real Laplacian eigenmodes in the bottom row does not have tunable parameters, as coupling strength tuning has minimal effect on the spatial patterns of the eigenmodes after degree normalization.}
+ \includegraphics[width = \linewidth]{../figures/fig2/eigmode_examples2.pdf}
+ \caption{Laplacian eigenmode examples. Here we illustrate three representative eigenmodes from the complex Laplacian with different tuning parameters as well as three representative eigenmodes from the real Laplacian without transmission speed and distance delay properties. The top and middle row shows brain renderings of the complex Laplacian eigenmodes with {$\alpha = 2.5, k = 2$} and {$alpha = 0.2, k = 8$} respectively. The real Laplacian eigenmodes in the bottom row does not have tunable parameters, as coupling strength tuning has minimal effect on the spatial patterns of the eigenmodes after degree normalization. The size and color of the spheres represent the relative amount of participation in the network for each brain region.}
  \label{fig:fig2}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
- \includegraphics[width = \linewidth]{../figures/fig3/fig3_compiled.pdf}
+ \includegraphics[width = \linewidth]{../figures/fig3/fig3_rescaled_compiled.pdf}
  \caption{Canonical functional networks reproduced by structural eigenmode. Brain renderings of the seven canonical functional networks are listed in the left column. Parameter optimization identified individual structural eigenmodes with the highest spatial correlation to each functional network as shown in the middle column. After ranking all structural eigenmodes by highest spatial correlation, a linear combination of the top ten best performing eigenmodes are shown in the right column.}
  \label{fig:fig3}
 \end{figure}
