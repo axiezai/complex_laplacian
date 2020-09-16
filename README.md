@@ -1,15 +1,11 @@
 # Structural Eigenmodes of Complex Graph Laplacian
-[Xihe Xie](https://github.com/axiezai)
 ---
-This repository includes the analysis as described in [ ], where we investigate whether we can recreate the canonical functional networks of the human brain from structural connectivity with a simple low dimensional and analytical solution. 
+This repository includes the analysis as described in [ ], where we investigate whether we can recreate the canonical functional networks of the human brain from structural connectivity with a simple low dimensional framework. 
 
 ## Set up:
-This repository is dependent on [`spectrome`](https://github.com/Raj-Lab-UCSF/spectrome), please see instructions in the repository for setting up your `conda` environment. Activating the `spectrome` environment will enable all the analysis in this repository.
+This repository is dependent on [`spectrome`](https://github.com/Raj-Lab-UCSF/spectrome), please see instructions in the repository for setting up your `conda` environment. The `spectrome` repository will need to be cloned, and the path to the `spectrome` folder will need to be appended to `$PYTHONPATH`. Activating the `spectrome` environment will enable all the analysis in this repository.
 
 ## Citation:
 
 
 ## Files:
-
-## Contributing:
-We'd love to have some feedback! Please take a look at our [Contributing guidelines](CONTRIBUTING.md) before creating a pull request. Also feel free to contact any of the repo maintainers as listed above. 
