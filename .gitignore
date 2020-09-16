@@ -47,3 +47,4 @@ data/*.h5
 data/bh_pearson
 data/*.npz
 figures/
+overleaf_manuscript/
