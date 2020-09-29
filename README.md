@@ -1,4 +1,5 @@
 # Structural Eigenmodes of Complex Graph Laplacian
+[![DOI](https://zenodo.org/badge/235454805.svg)](https://zenodo.org/badge/latestdoi/235454805)
 ---
 This repository includes the analysis as described in [Emergence of Canonical Functional Networks from Complex-valued Laplacian of Structural Connectome](https://www.biorxiv.org/content/10.1101/2020.09.16.300384v1), where we investigate whether we can recreate the canonical functional networks of the human brain from structural connectivity with a simple low dimensional framework. 
 
