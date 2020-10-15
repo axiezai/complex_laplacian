@@ -48,3 +48,4 @@ data/bh_pearson
 data/*.npz
 figures/
 overleaf_manuscript/
+.DS_Store
