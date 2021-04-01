@@ -1,6 +1,6 @@
 """
 Use the basinhopping algorithm to find best alpha, speed, and frequency
-that produces the best DICE scores for a given canonical network
+that produces the best spatial correlation for a given canonical network
 """
 
 # number stuff imports
