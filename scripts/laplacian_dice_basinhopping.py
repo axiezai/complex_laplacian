@@ -122,7 +122,7 @@ opt_res = basinhopping(
         laplacian_dice,
         x0=allx0[int(sys.argv[2]), :],
         minimizer_kwargs={"args": (HCP_brain, DKfc_binarized, str(sys.argv[1]))},
-        niter=1500,
+        niter=5000,
         T=0.1,
         stepsize=2,
         accept_test=bnds,
